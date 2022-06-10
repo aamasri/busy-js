@@ -1,14 +1,14 @@
 {
   "name": "@aamasri/busy",
   "description": "A beautiful animated loader with a js busy queuing system.",
-  "version": "1.0.3",
-  "versionDescription": "Updated readme publishing steps.",
+  "version": "1.0.4",
+  "versionDescription": "Updated package root file.",
   "scripts": {
     "build-production": "webpack --mode production",
     "build": "webpack --mode development",
     "publish": "node ./publish.js"
   },
-  "main": "src/dialog.js",
+  "main": "src/busy.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/aamasri/dialog.git"
