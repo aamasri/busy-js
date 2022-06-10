@@ -1,8 +1,8 @@
 {
   "name": "@aamasri/busy",
   "description": "A beautiful animated loader with a js busy queuing system.",
-  "version": "1.0.2",
-  "versionDescription": "Updated package name to private scoped for NPMJS",
+  "version": "1.0.3",
+  "versionDescription": "Updated readme publishing steps.",
   "scripts": {
     "build-production": "webpack --mode production",
     "build": "webpack --mode development",

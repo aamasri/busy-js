@@ -128,7 +128,7 @@ import(/* webpackChunkName: "busy" */ 'busy').then((busy) => {
 </table>
 
 
-
+<br><br>
 <h2>Package Management</h2>
 
 Busy supports [npm](https://www.npmjs.com/package/@aamasri/busy) under the name `@aamasri/busy`.
@@ -152,19 +152,14 @@ If your page already loads the jQuery or @aamasri/dom-utils packages, busy will 
 
 <br><br>
 
-## Manual release steps
+## Publishing Updates
 <ol>
 <li>Increment the "version" attribute of `package.json`.</li>
+<li>Update the "versionDescription" string of `package.json`.</li>
 <li>Re-build the browser output bundle...<pre>npm run build-production</pre>
-...and observe that webpack completed with no errors.</li>
-<li>Test the bundle by loading page: "dist/index.html" in a browser.</li>
-<li>Commit <pre>git commit -a -m "Release version x.x.x - description"</pre></li>
-<li>Tag the commit with its version number <pre>git tag x.x.x</pre></li>
-<li>Change the "latest" tag pointer to the latest commit & push:
-    <pre>git tag -f latest
-git push origin master :refs/tags/latest
-git push origin master --tags</pre>
-<li>Publish to npm registry:<pre>npm publish</pre></li>
+...and observe that webpack completed with no errors.<br><br></li>
+<li>Test the bundle by loading page: "dist/index.html" in a browser (setup a development webserver).</li>
+<li>Publish to the git repository and npm package registry:<pre>npm run publish</pre></li>
 </ol>
 
 <br>
