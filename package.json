@@ -1,0 +1,54 @@
+{
+  "name": "busy-js",
+  "description": "A beautiful animated loader with a js busy queuing system.",
+  "version": "1.0.0",
+  "versionDescription": "Release as open source package on Github & NPMJS.",
+  "scripts": {
+    "build-production": "webpack --mode production",
+    "build": "webpack --mode development",
+    "publish": "node ./publish.js"
+  },
+  "main": "src/dialog.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aamasri/dialog.git"
+  },
+  "keywords": [
+    "dialog",
+    "notification",
+    "notifications",
+    "javascript",
+    "popup",
+    "ES6",
+    "ES7",
+    "ES2015"
+  ],
+  "homepage": "https://github.com/aamasri/busy-js#readme",
+  "author": "Ananda Masri <ananda@auro.technology> (https://auro.technology)",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "bugs": {
+    "url": "https://github.com/aamasri/busy-js/issues"
+  },
+  "dependencies": {
+    "@aamasri/dom-utils": "^1.1.6",
+    "jquery": "^3.6.0"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-runtime": "^7.18.2",
+    "@babel/preset-env": "^7.18.2",
+    "autoprefixer": "^10.4.7",
+    "babel-loader": "^8.2.5",
+    "css-loader": "^6.7.1",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.6.0",
+    "postcss-loader": "^7.0.0",
+    "stylus-loader": "^7.0.0",
+    "terser-webpack-plugin": "^5.3.3",
+    "webpack": "^5.73.0",
+    "webpack-clean-obsolete-chunks": "^0.4.0",
+    "webpack-cli": "^4.9.2"
+  }
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Animated Loader Demo</title>
+
+    <style>
+        html {
+            font-family: Verdana, 'sans-serif';
+            line-height: 2;
+            padding: 10px 3%;
+            box-sizing: border-box;
+        }
+
+        button {
+            border: none;
+            border-radius: 6px;
+            background-color: #5bc0de;
+            color: white;
+            padding: 10px;
+            margin: 0 10px 10px 0;
+            outline: none;
+            cursor: pointer;
+            user-select: none;
+            box-shadow: 8px 8px 16px #CCC;
+        }
+
+        button.success { background-color: #198754; }
+        button.danger { background-color: #dc3545; }
+        button.warn { background-color: #ffc107; }
+
+        pre { color: white; background-color: #666; padding: 2rem; }
+    </style>
+<script defer src="/busy.js"></script></head>
+
+
+<body>
+
+<h1>Animated Loader Demo</h1>
+
+<h3>Example Usage</h3>
+<pre>
+busy.start('fetching dinner', 30, true);    // modal spinner with 30 second timeout
+
+window.setTimeout( function () {
+    busy.stop('fetching dinner')            // stop spinner after 10 seconds
+}, 10000);
+</pre>
+
+
+<div style="position: fixed; bottom: 10vh;">
+    <button class="success" onclick="busy.start('quick-'+Math.random(), 1, true);">Add a quick operation to the queue (modal with 2 second timeout)</button>
+    <button class="success" onclick="busy.start('slow-'+Math.random(), 30, false);">Add a slow operation to the queue (with 30 second timeout)</button>
+    <button class="warn" onclick="if (busy.queue.length) busy.stop(busy.queue[0].id);">Clear oldest operation</button>
+    <button class="danger" onclick="busy.reset()">Clear whole busy queue</button>
+</div>
+
+</body>
+</html>

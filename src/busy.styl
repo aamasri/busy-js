@@ -1,0 +1,72 @@
+$grey = rgba(0, 0, 0, 0.5)
+$red = rgba(255, 0, 0, 0.5)
+$green = rgba(0, 255, 0, 0.5)
+$blue = rgba(0, 0, 255, 0.5)
+$width = 120px
+$animation = rotate2 10s cubic-bezier(0.1, 0.7, 1, 0.1) infinite
+
+
+#animated-loader-modal-overlay
+    opacity 0
+    display none
+    position fixed
+    background-color #CCC
+    filter blur(2px)
+    top 0
+    left 0
+    width 100%
+    height 100%
+
+
+#animated-loader
+    display none
+    box-sizing border-box
+    position fixed
+    top "calc(50vh - (%s/2))" % $width
+    left "calc(50vw - (%s/2))" % $width
+    width $width
+    height $width
+    will-change transform
+    border 4px solid transparent
+    border-radius 50%
+    padding 4px
+    animation $animation
+
+    div
+        box-sizing border-box
+        height 100%
+        will-change transform
+        border 4px solid transparent
+        border-radius 50%
+        padding 4px
+        animation $animation
+
+        &:hover
+            animation-play-state paused
+
+
+
+@keyframes rotate
+    0%
+        transform rotate(0deg)
+    
+    50%
+        transform rotate(180deg)
+    
+    100%
+        transform rotate(360deg)
+    
+
+@keyframes rotate2
+    0%
+        transform rotate(0deg)
+        border-top-color rgba(0, 0, 0, 0.5)
+    
+    50%
+        transform rotate(180deg)
+        border-top-color rgba(0, 0, 255, 0.5)
+    
+    100%
+        transform rotate(360deg)
+        border-top-color rgba(255, 0, 0, 0.5)
+    
