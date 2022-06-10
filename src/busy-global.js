@@ -8,5 +8,5 @@ const debug = false;
 import(/* webpackChunkName: "busy" */ './busy').then(function (busyModule) {
     window.busy = busyModule;
     if (debug)
-        console.debug('busy-js loaded', typeof window.busy);
+        console.debug('busy loaded', typeof window.busy);
 });

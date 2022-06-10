@@ -8,7 +8,7 @@ function runShell(command) {
     return execSync(command, { encoding: 'utf-8' });
 }
 
-console.log(`releasing busy-js (${version} - ${description})...`);
+console.log(`releasing busy (${version} - ${description})...`);
 
 const lastCommitMessage = runShell('git log -1 --pretty=%B');
 if (lastCommitMessage.includes(version) || lastCommitMessage.includes(description)) {

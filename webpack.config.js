@@ -1,7 +1,7 @@
 /****************************************************
  *
  * WEBPACK CONFIGURATION FILE
- * (to build a busy-js browser bundle in "dist" folder)
+ * (to build a busy browser bundle in "dist" folder)
  *
  ***************************************************/
 'use strict';
@@ -60,7 +60,7 @@ module.exports = (env, argv) => {
     const isDev = argv.mode !== 'production';
 
     console.warn(`\n\n\n============================================================`);
-    console.info(`Building core busy-js bundle version: ${packageJson.version} for ${isDev ? 'development' : 'production'}...`);
+    console.info(`Building core busy bundle version: ${packageJson.version} for ${isDev ? 'development' : 'production'}...`);
     console.warn(`============================================================`);
 
 
@@ -145,7 +145,7 @@ module.exports = (env, argv) => {
             }),
             new webpack.BannerPlugin({
                 banner: `
- busy-js package version ${packageJson.version}
+ @aamasri/busy package version ${packageJson.version}
  (c) 2022 Ananda Masri
  Released under the MIT license
  https://auro.technology/demos/busy-js
