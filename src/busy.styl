@@ -2,7 +2,6 @@ $grey = rgba(0, 0, 0, 0.5)
 $red = rgba(255, 0, 0, 0.5)
 $green = rgba(0, 255, 0, 0.5)
 $blue = rgba(0, 0, 255, 0.5)
-$width = 120px
 $animation = rotate2 10s cubic-bezier(0.1, 0.7, 1, 0.1) infinite
 
 
@@ -22,10 +21,10 @@ $animation = rotate2 10s cubic-bezier(0.1, 0.7, 1, 0.1) infinite
     display none
     box-sizing border-box
     position fixed
-    top "calc(50vh - (%s/2))" % $width
-    left "calc(50vw - (%s/2))" % $width
-    width $width
-    height $width
+    top calc(50vh - 60px)
+    left calc(50vw - 60px)
+    width 120px
+    height 120px
     will-change transform
     border 4px solid transparent
     border-radius 50%

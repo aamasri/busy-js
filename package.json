@@ -1,8 +1,8 @@
 {
   "name": "@aamasri/busy",
   "description": "A beautiful animated loader with a js busy queuing system.",
-  "version": "1.0.5",
-  "versionDescription": "Fixed github repo url.",
+  "version": "1.0.6",
+  "versionDescription": "Fixed iffy stylus variable",
   "scripts": {
     "build-production": "webpack --mode production",
     "build": "webpack --mode development",
