@@ -1,8 +1,8 @@
 {
   "name": "@aamasri/busy",
   "description": "A beautiful animated loader with a js busy queuing system.",
-  "version": "1.0.6",
-  "versionDescription": "Fixed iffy stylus variable",
+  "version": "1.0.7",
+  "versionDescription": "Removed $ from stylus variable names.",
   "scripts": {
     "build-production": "webpack --mode production",
     "build": "webpack --mode development",
@@ -14,11 +14,10 @@
     "url": "git+https://github.com/aamasri/busy-js.git"
   },
   "keywords": [
-    "dialog",
-    "notification",
-    "notifications",
+    "busy",
+    "spinner",
+    "loader",
     "javascript",
-    "popup",
     "ES6",
     "ES7",
     "ES2015"

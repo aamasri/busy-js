@@ -1,8 +1,9 @@
-$grey = rgba(0, 0, 0, 0.5)
-$red = rgba(255, 0, 0, 0.5)
-$green = rgba(0, 255, 0, 0.5)
-$blue = rgba(0, 0, 255, 0.5)
-$animation = rotate2 10s cubic-bezier(0.1, 0.7, 1, 0.1) infinite
+grey = rgba(0, 0, 0, 0.5)
+red = rgba(255, 0, 0, 0.5)
+green = rgba(0, 255, 0, 0.5)
+blue = rgba(0, 0, 255, 0.5)
+width = 120px
+animation = rotate2 10s cubic-bezier(0.1, 0.7, 1, 0.1) infinite
 
 
 #animated-loader-modal-overlay
@@ -21,15 +22,15 @@ $animation = rotate2 10s cubic-bezier(0.1, 0.7, 1, 0.1) infinite
     display none
     box-sizing border-box
     position fixed
-    top calc(50vh - 60px)
-    left calc(50vw - 60px)
-    width 120px
-    height 120px
+    top "calc(50vh - (%s/2))" % width
+    left "calc(50vw - (%s/2))" % width
+    width width
+    height width
     will-change transform
     border 4px solid transparent
     border-radius 50%
     padding 4px
-    animation $animation
+    animation animation
 
     div
         box-sizing border-box
@@ -38,7 +39,7 @@ $animation = rotate2 10s cubic-bezier(0.1, 0.7, 1, 0.1) infinite
         border 4px solid transparent
         border-radius 50%
         padding 4px
-        animation $animation
+        animation animation
 
         &:hover
             animation-play-state paused
