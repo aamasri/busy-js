@@ -146,9 +146,6 @@ Busy supports [npm](https://www.npmjs.com/package/@aamasri/busy) under the name 
 These dependencies are bundled (as separate pre-built 'chunks') in this package's "dist" folder.  
 <br>
 Invoking the busy.start() function will dynamically load these dependencies at run-time (if these scripts don't already exist on the page) and they'll be added to the global window object.
-<br><br>
-If your page already loads the jQuery or @aamasri/dom-utils packages, busy will use them instead.
-
 
 <br><br>
 

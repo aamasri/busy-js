@@ -140,13 +140,10 @@ module.exports = (env, argv) => {
                 filename: 'index.css',
                 chunkFilename: 'chunk_[name].css',
             }),
-            new webpack.ProvidePlugin({
-                $: 'jquery',    // eg. $('#item') will just work anywhere (without jQuery require)
-            }),
             new webpack.BannerPlugin({
                 banner: `
  @aamasri/busy package version ${packageJson.version}
- (c) 2022 Ananda Masri
+ (c) 2023 Ananda Masri
  Released under the MIT license
  https://auro.technology/demos/busy-js
  `

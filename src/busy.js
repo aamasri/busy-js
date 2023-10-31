@@ -7,10 +7,9 @@
 const debug = false;
 
 import './busy.styl';
-import { onTopZIndex } from "@aamasri/dom-utils";
 
-let $busyAnimation = false;
-let $modalOverlay = false;
+let busyAnimation = false;
+let modalOverlay = false;
 export const queue = [];
 
 
@@ -23,50 +22,29 @@ export async function start(id, timeout=7, modal=false) {
 
     queue.push({ id: id, expiry: expiry, modal: modal });     // allows matching id to be stopped
 
-    if (!$busyAnimation) {
-        // lazy load dependencies
-        if (window.jQuery === undefined) {
-            window.jQuery = await import(/* webpackChunkName: "jquery" */ 'jquery');
-            window.jQuery = window.jQuery.default;
-        }
-
-        if (debug) console.debug('jQuery loaded', typeof window.jQuery);
-
-
+    if (!busyAnimation) {
         const isInIframe = window.location !== window.parent.location;		// detects whether we're in an iframe
-        const $body = jQuery(isInIframe ? parent.document.body : document.body);
+        const body = isInIframe ? parent.document.body : document.body;
 
-        // title for debugging only
-        $modalOverlay = jQuery(`<div id="animated-loader-modal-overlay"></div>`).appendTo($body);
-        $busyAnimation = jQuery(`<div id="animated-loader" title="${id}">
-                                            <div>
-                                                <div>
-                                                    <div>
-                                                        <div>
-                                                            <div>
-                                                                <div>
-                                                                    <div>
-                                                                        <div>
-                                                                            <div>
-                                                                                <div></div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>`).appendTo($body);
+        modalOverlay = document.createElement('div');
+        modalOverlay.id = 'animated-loader-modal-overlay';
+        document.body.appendChild(modalOverlay);
+
+        busyAnimation = document.createElement('div');
+        busyAnimation.id = 'animated-loader';
+        busyAnimation.title = id;
+        busyAnimation.innerHTML = '<div><div><div><div><div><div><div><div><div><div></div></div></div></div></div></div></div></div></div>';
+        body.appendChild(busyAnimation);
     }
 
-    $busyAnimation.stop().css('z-index', onTopZIndex()).fadeIn();
+    busyAnimation.style.zIndex = onTopZIndex().toString();
+    busyAnimation.style.display = 'block';   // fade in
+    busyAnimation.style.opacity = '1';   // fade in
 
     if (modal)
-        $modalOverlay.fadeTo('slow', 0.4);
+        modalOverlay.style.opacity = '0.4';   // fade in
 
-    window.setTimeout(`busy.stop()`, timeout);   // dequeue
+    window.setTimeout(() => { stop(id); }, timeout);   // dequeue
 }
 
 
@@ -103,32 +81,23 @@ export function stop(id) {
 
     if (queue.length === 0) {
         _hideModalOverlay();
-        $busyAnimation.stop().fadeOut('fast');		// stop the busy animation now that the server has responded
+        busyAnimation.style.opacity = '0';		// fade out
     }
 }
 
 
 
 function _hideModalOverlay() {
-    if ($modalOverlay.css('display') === 'none')
-        return;
-
-    $modalOverlay.fadeOut('fast', function() {
-        $modalOverlay.css('opacity', 0);
-    });
+    modalOverlay.style.opacity = '0';   // fade out
 }
 
 
 
 // clear the busy queue and stop the busy animation
 export function reset() {
-    window.setTimeout(function() {
-        queue.length = 0;
-        if ($busyAnimation && $busyAnimation.length)
-            $busyAnimation.stop().fadeOut('fast');
-    }, 1000);
+    queue.length = 0;
+    busyAnimation.style.opacity = '0';		// fade out
 }
-
 
 
 
@@ -137,4 +106,23 @@ export function status() {
     console.log('busy queue:', queue);
 }
 
+
+
+/** Get the highest z-index in the document.
+ *
+ * @returns {number}
+ */
+function onTopZIndex() {
+    let zTop = 0;
+    const elements = document.getElementsByTagName('*');
+
+    for (let i = 0; i < elements.length; i++) {
+        let zIndex = window.getComputedStyle(elements[i]).getPropertyValue('z-index');
+        zIndex = isNaN(zIndex) ? 0 : parseInt(zIndex);
+        if (zIndex && zIndex > zTop)
+            zTop = zIndex;
+    }
+
+    return zTop;
+}
 

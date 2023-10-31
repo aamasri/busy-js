@@ -1,8 +1,8 @@
 {
   "name": "@aamasri/busy",
   "description": "A beautiful animated loader with a js busy queuing system.",
-  "version": "1.0.7",
-  "versionDescription": "Removed $ from stylus variable names.",
+  "version": "1.1.0",
+  "versionDescription": "Removed all dependencies",
   "scripts": {
     "build-production": "webpack --mode production",
     "build": "webpack --mode development",
@@ -31,23 +31,19 @@
   "bugs": {
     "url": "https://github.com/aamasri/busy/issues"
   },
-  "dependencies": {
-    "@aamasri/dom-utils": "^1.1.6",
-    "jquery": "^3.6.0"
-  },
   "devDependencies": {
-    "@babel/plugin-transform-runtime": "^7.18.2",
-    "@babel/preset-env": "^7.18.2",
-    "autoprefixer": "^10.4.7",
-    "babel-loader": "^8.2.5",
-    "css-loader": "^6.7.1",
-    "html-webpack-plugin": "^5.5.0",
-    "mini-css-extract-plugin": "^2.6.0",
-    "postcss-loader": "^7.0.0",
-    "stylus-loader": "^7.0.0",
-    "terser-webpack-plugin": "^5.3.3",
-    "webpack": "^5.73.0",
-    "webpack-clean-obsolete-chunks": "^0.4.0",
-    "webpack-cli": "^4.9.2"
+    "@babel/plugin-transform-runtime": "^7.x",
+    "@babel/preset-env": "^7.x",
+    "autoprefixer": "^10.x",
+    "babel-loader": "^9.x",
+    "css-loader": "^6.x",
+    "html-webpack-plugin": "^5.x",
+    "mini-css-extract-plugin": "^2.x",
+    "postcss-loader": "^7.x",
+    "stylus-loader": "^7.x",
+    "terser-webpack-plugin": "^5.x",
+    "webpack": "^5.x",
+    "webpack-clean-obsolete-chunks": "^0.x",
+    "webpack-cli": "^5.x"
   }
 }
