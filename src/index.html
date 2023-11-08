@@ -53,7 +53,7 @@
         <button class="success" onclick="busy.start('quick-modal-'+Math.random(), 10, true);">Start 10s modal operation</button>
         <button class="success" onclick="busy.start('medium-modal-'+Math.random(), 30, true);">Start 30-sec modal operation</button>
         <button class="success" onclick="busy.start('slow-'+Math.random(), 45, false);">Start 45-sec operation</button>
-        <button class="warn" onclick="if (busy.queue.length) busy.stop(busy.queue[0].id);">Clear oldest</button>
+        <button class="warn" onclick="if (window.busyQueue.length) busy.stop(window.busyQueue[0].id);">Clear oldest</button>
         <button class="danger" onclick="busy.reset()">Clear queue</button>
     </div>
 
