@@ -1,8 +1,8 @@
 {
   "name": "@aamasri/busy",
   "description": "A beautiful animated loader with a js busy queuing system.",
-  "version": "1.1.0",
-  "versionDescription": "Removed all dependencies",
+  "version": "1.2.0",
+  "versionDescription": "More robust queuing and better modal effect",
   "scripts": {
     "build-production": "webpack --mode production",
     "build": "webpack --mode development",
