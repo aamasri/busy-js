@@ -7,7 +7,7 @@ const debug = false;
 import './busy.styl';
 
 let busyAnimation = null;
-let modalOverlay = null;
+let modalUnderlay = null;
 let fadeoutAnimationTimer;
 let fadeoutModalTimer;
 
@@ -95,11 +95,15 @@ export function status() {
 
 ////////////////////// SUPPORTING FUNCTIONS //////////////////////
 
+function _elementExists(el) {
+    return (typeof el !== 'undefined' && (el instanceof Element));
+}
+
+
 function _initQueue() {
     if (typeof window.top.busyQueue !== 'object')
         window.top.busyQueue = [];
 }
-
 
 
 // monitor the queue and update the busy animation
@@ -121,24 +125,29 @@ function _updateBusy() {
 function _showAnimation(id) {
     window.top.clearTimeout(fadeoutAnimationTimer);
 
-    // the busy animation is always on the root document
-    busyAnimation = busyAnimation || window.top.document.body.querySelector('#animated-loader');
+    // create the busy animation and modal underlay if it doesn't exist
+    if (!_elementExists(modalUnderlay)) {
+        modalUnderlay = window.top.document.body.querySelector('#animated-loader-modal-underlay');
+        if (modalUnderlay === null) {
+            modalUnderlay = window.top.document.createElement('div');
+            modalUnderlay.id = 'animated-loader-modal-underlay';
+            window.top.document.body.appendChild(modalUnderlay);
+        }
+    }
 
-    // create busy animation elements if it doesn't exist (they can be hidden but never removed)
-    if (busyAnimation === null) {
-        modalOverlay = document.createElement('div');
-        modalOverlay.id = 'animated-loader-modal-overlay';
-        window.top.document.body.appendChild(modalOverlay);
-
-        busyAnimation = document.createElement('div');
-        busyAnimation.id = 'animated-loader';
-        busyAnimation.innerHTML = '<div><div><div><div><div><div><div><div><div><div></div></div></div></div></div></div></div></div></div>';
-        window.top.document.body.appendChild(busyAnimation);
+    if (!_elementExists(busyAnimation)) {
+        busyAnimation = window.top.document.body.querySelector('#animated-loader');
+        if (busyAnimation === null) {
+            busyAnimation = window.top.document.createElement('div');
+            busyAnimation.id = 'animated-loader';
+            busyAnimation.innerHTML = '<div><div><div><div><div><div><div><div><div><div></div></div></div></div></div></div></div></div></div>';
+            window.top.document.body.appendChild(busyAnimation);
+        }
     }
 
     const topZ = _onTopZIndex().toString();
     busyAnimation.style.zIndex = topZ;
-    modalOverlay.style.zIndex = topZ;
+    modalUnderlay.style.zIndex = topZ;
     busyAnimation.title = id;
     busyAnimation.style.display = 'block';
     busyAnimation.style.opacity = '1';
@@ -146,19 +155,23 @@ function _showAnimation(id) {
 
 function _showModal() {
     window.top.clearTimeout(fadeoutModalTimer);
-    modalOverlay.style.display = 'block';
-    modalOverlay.style.opacity = '1';
+    if (_elementExists(modalUnderlay)) {
+        modalUnderlay.style.display = 'block';
+        modalUnderlay.style.opacity = '1';
+    }
 }
 
 function _fadeOutAnimation() {
     window.top.clearTimeout(fadeoutAnimationTimer);
 
     // fade out
-    busyAnimation.style.opacity = '0';
+    if (_elementExists(busyAnimation))
+        busyAnimation.style.opacity = '0';
 
     // then hide
     fadeoutAnimationTimer = window.top.setTimeout(() => {
-        busyAnimation.style.display = 'none';
+        if (_elementExists(busyAnimation))
+            busyAnimation.style.display = 'none';
     }, 500);   // hide
 }
 
@@ -166,11 +179,13 @@ function _fadeOutModal() {
     window.top.clearTimeout(fadeoutModalTimer);
 
     // fadeout
-    modalOverlay.style.opacity = '0';
+    if (_elementExists(modalUnderlay))
+        modalUnderlay.style.opacity = '0';
 
     // then hide
     fadeoutModalTimer = window.top.setTimeout(() => {
-        modalOverlay.style.display = 'none';
+        if (_elementExists(modalUnderlay))
+            modalUnderlay.style.display = 'none';
     }, 500);   // hide
 }
 
