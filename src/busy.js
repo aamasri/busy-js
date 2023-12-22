@@ -198,7 +198,7 @@ function _fadeOutModal() {
  */
 function _onTopZIndex() {
     let zTop = 0;
-    const elements = document.getElementsByTagName('*');
+    const elements = window.top.document.getElementsByTagName('*');
 
     for (let i = 0; i < elements.length; i++) {
         let zIndex = window.top.getComputedStyle(elements[i]).getPropertyValue('z-index');
@@ -209,4 +209,3 @@ function _onTopZIndex() {
 
     return zTop;
 }
-

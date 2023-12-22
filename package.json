@@ -1,8 +1,8 @@
 {
   "name": "@aamasri/busy",
   "description": "A beautiful animated loader with a js busy queuing system.",
-  "version": "1.2.3",
-  "versionDescription": "Fix undefined errors for when busy elements are unexpectedly missing in the DOM.",
+  "version": "1.2.4",
+  "versionDescription": "Fixed on-top-z-index not evaluated in parent context when called in an iframe.",
   "scripts": {
     "build-production": "webpack --mode production",
     "build": "webpack --mode development",
